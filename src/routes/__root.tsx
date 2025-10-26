@@ -4,6 +4,7 @@ import { type QueryClient } from "@tanstack/react-query";
 import {
   createRootRouteWithContext,
   Outlet,
+  Scripts,
   useRouterState,
 } from "@tanstack/react-router";
 import { Toaster } from "@/components/ui/sonner";
@@ -27,15 +28,20 @@ export const Route = createRootRouteWithContext<{
         content: "width=device-width, initial-scale=1",
       },
       ...seo({
-        title:
-          "TanStack Start | Type-Safe, Client-First, Full-Stack React Framework",
+        title: "TanStack Start",
         description: `TanStack Start is a type-safe, client-first, full-stack React framework. `,
       }),
     ],
     links: [{ rel: "stylesheet", href: appCss }],
   }),
   notFoundComponent: NotFoundErrorView,
-  errorComponent: DefaultCatchBoundaryView,
+  errorComponent: (props) => {
+    return (
+      <RootDocument>
+        <DefaultCatchBoundaryView {...props} />
+      </RootDocument>
+    );
+  },
   component: RootComponent,
 });
 
@@ -43,6 +49,7 @@ function RootComponent() {
   const isFetching = useRouterState({
     select: (s) => s.isLoading,
   });
+
   return (
     <RootDocument>
       {isFetching ? <AppLoader fullScreen /> : <Outlet />}
@@ -72,6 +79,7 @@ function RootDocument({ children }: { children: React.ReactNode }) {
             ]}
           />
         )}
+        <Scripts />
       </body>
     </html>
   );

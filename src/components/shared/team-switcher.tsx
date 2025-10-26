@@ -31,7 +31,7 @@ export function TeamSwitcher({ teams }: TeamSwitcherProps) {
   return (
     <SidebarMenu>
       <SidebarMenuItem>
-        <DropdownMenu open={true}>
+        <DropdownMenu>
           <DropdownMenuTrigger asChild>
             <SidebarMenuButton
               size="lg"

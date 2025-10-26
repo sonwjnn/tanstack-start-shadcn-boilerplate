@@ -25,6 +25,8 @@ import {
   useSidebar,
 } from "@/components/ui/sidebar";
 // import { SignOutDialog } from '@/components/sign-out-dialog'
+import { useLocation, useNavigate } from "@tanstack/react-router";
+import { useAuthStore } from "@/modules/auth/store/auth-store";
 
 type NavUserProps = {
   user: {
@@ -37,7 +39,20 @@ type NavUserProps = {
 export function NavUser({ user }: NavUserProps) {
   const { isMobile } = useSidebar();
   // const [open, setOpen] = useDialogState()
+  const navigate = useNavigate();
+  const location = useLocation();
+  const { auth } = useAuthStore();
 
+  const handleSignOut = () => {
+    auth.reset();
+    // Preserve current location for redirect after sign-in
+    const currentPath = location.href;
+    navigate({
+      to: "/sign-in",
+      search: { redirect: currentPath },
+      replace: true,
+    });
+  };
   return (
     <>
       <SidebarMenu>
@@ -86,19 +101,19 @@ export function NavUser({ user }: NavUserProps) {
               </DropdownMenuGroup>
               <DropdownMenuSeparator />
               <DropdownMenuGroup>
-                <DropdownMenuItem asChild>
+                <DropdownMenuItem>
                   {/* <Link to='/settings/account'> */}
                   <BadgeCheck />
                   Account
                   {/* </Link> */}
                 </DropdownMenuItem>
-                <DropdownMenuItem asChild>
+                <DropdownMenuItem>
                   {/* <Link to='/settings'> */}
                   <CreditCard />
                   Billing
                   {/* </Link> */}
                 </DropdownMenuItem>
-                <DropdownMenuItem asChild>
+                <DropdownMenuItem>
                   {/* <Link to='/settings/notifications'> */}
                   <Bell />
                   Notifications
@@ -106,10 +121,7 @@ export function NavUser({ user }: NavUserProps) {
                 </DropdownMenuItem>
               </DropdownMenuGroup>
               <DropdownMenuSeparator />
-              <DropdownMenuItem
-                variant="destructive"
-                // onClick={() => setOpen(true)}
-              >
+              <DropdownMenuItem variant="destructive" onClick={handleSignOut}>
                 <LogOut />
                 Sign out
               </DropdownMenuItem>

@@ -11,14 +11,27 @@ import {
   DropdownMenuShortcut,
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu";
-// import { SignOutDialog } from '@/components/sign-out-dialog'
+import { useAuthStore } from "@/modules/auth/store/auth-store";
+import { useLocation, useNavigate } from "@tanstack/react-router";
 
 export const ProfileDropdown = () => {
-  // const [open, setOpen] = useDialogState();
+  const navigate = useNavigate();
+  const location = useLocation();
+  const { auth } = useAuthStore();
 
+  const handleSignOut = () => {
+    auth.reset();
+    // Preserve current location for redirect after sign-in
+    const currentPath = location.href;
+    navigate({
+      to: "/sign-in",
+      search: { redirect: currentPath },
+      replace: true,
+    });
+  };
   return (
     <>
-      <DropdownMenu modal={false}>
+      <DropdownMenu>
         <DropdownMenuTrigger asChild>
           <Button variant="ghost" className="relative h-8 w-8 rounded-full">
             <Avatar className="h-8 w-8">
@@ -38,19 +51,19 @@ export const ProfileDropdown = () => {
           </DropdownMenuLabel>
           <DropdownMenuSeparator />
           <DropdownMenuGroup>
-            <DropdownMenuItem asChild>
+            <DropdownMenuItem>
               {/* <Link to='/settings'> */}
               Profile
               <DropdownMenuShortcut>⇧⌘P</DropdownMenuShortcut>
               {/* </Link> */}
             </DropdownMenuItem>
-            <DropdownMenuItem asChild>
+            <DropdownMenuItem>
               {/* <Link to='/settings'> */}
               Billing
               <DropdownMenuShortcut>⌘B</DropdownMenuShortcut>
               {/* </Link> */}
             </DropdownMenuItem>
-            <DropdownMenuItem asChild>
+            <DropdownMenuItem>
               {/* <Link to='/settings'> */}
               Settings
               <DropdownMenuShortcut>⌘S</DropdownMenuShortcut>
@@ -59,7 +72,7 @@ export const ProfileDropdown = () => {
             <DropdownMenuItem>New Team</DropdownMenuItem>
           </DropdownMenuGroup>
           <DropdownMenuSeparator />
-          <DropdownMenuItem variant="destructive" onClick={() => {}}>
+          <DropdownMenuItem variant="destructive" onClick={handleSignOut}>
             Sign out
             <DropdownMenuShortcut className="text-current">
               ⇧⌘Q

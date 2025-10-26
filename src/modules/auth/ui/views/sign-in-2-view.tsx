@@ -1,7 +1,5 @@
 // import { Logo } from "@/assets/logo";
 import { cn } from "@/lib/utils";
-import dashboardDark from "./assets/dashboard-dark.png";
-import dashboardLight from "./assets/dashboard-light.png";
 import { SignInForm } from "@/modules/auth/ui/components/sign-in-form";
 
 export const SignIn2View = () => {
@@ -11,7 +9,7 @@ export const SignIn2View = () => {
         <div className="mx-auto flex w-full flex-col justify-center space-y-2 py-8 sm:w-[480px] sm:p-8">
           <div className="mb-4 flex items-center justify-center">
             {/* <Logo className="me-2" /> */}
-            <h1 className="text-xl font-medium">Admin</h1>
+            <h1 className="text-xl font-medium">Shadcn Admin</h1>
           </div>
         </div>
         <div className="mx-auto flex w-full max-w-sm flex-col justify-center space-y-2">
@@ -48,22 +46,7 @@ export const SignIn2View = () => {
           "bg-muted relative h-full overflow-hidden max-lg:hidden",
           "[&>img]:absolute [&>img]:top-[15%] [&>img]:left-20 [&>img]:h-full [&>img]:w-full [&>img]:object-cover [&>img]:object-top-left [&>img]:select-none"
         )}
-      >
-        <img
-          src={dashboardLight}
-          className="dark:hidden"
-          width={1024}
-          height={1151}
-          alt="Shadcn-Admin"
-        />
-        <img
-          src={dashboardDark}
-          className="hidden dark:block"
-          width={1024}
-          height={1138}
-          alt="Shadcn-Admin"
-        />
-      </div>
+      ></div>
     </div>
   );
 };

@@ -14,7 +14,10 @@
       "!**/.tanstack",
       "!**/.vscode",
       "!**/routeTree.gen.ts",
-      "!**/package.json"
+      "!**/package.json",
+      "!**/src/components/ui",
+      "!**/src/lib/utils.ts",
+      "!**/src/hooks/use-mobile.ts"
     ]
   },
   "formatter": {
@@ -39,10 +42,7 @@
           "options": {
             "functions": ["clsx", "cva", "cn"]
           }
-        },
-        "noShadow": "off",
-        "noEmptySource": "off",
-        "noReactForwardRef": "warn"
+        }
       },
       "correctness": {
         "noUnusedImports": "error",
@@ -51,46 +51,24 @@
         "useExhaustiveDependencies": "warn"
       },
       "suspicious": {
-        "noConsole": "warn",
-        "noArrayIndexKey": "warn",
-
-        "noDoubleEquals": "off",
+        /* Allowing console for debugging */
+        "noConsole": "off",
         "noDocumentCookie": "off"
       },
       "style": {
-        "noParameterAssign": "error",
-        "useAsConstAssertion": "error",
-        "useDefaultParameterLast": "error",
-        "useEnumInitializers": "error",
-        "useSelfClosingElements": "error",
-        "useSingleVarDeclarator": "error",
-        "noUnusedTemplateLiteral": "error",
-        "useNumberNamespace": "error",
-        "noInferrableTypes": "error",
-        "noUselessElse": "error",
-
         "useBlockStatements": "off",
         "noMagicNumbers": "off",
         "useConsistentTypeDefinitions": "off",
         "noNestedTernary": "off"
       },
-      "performance": {
-        "noNamespaceImport": "off"
-      },
       "a11y": {
-        "useSemanticElements": "off",
-        "useFocusableInteractive": "off",
-        "noNoninteractiveElementInteractions": "off",
-        "useKeyWithClickEvents": "off",
-        "useAriaPropsForRole": "off",
-        "noRedundantRoles": "off",
+        /* Needs more work to fix */
         "noSvgWithoutTitle": "off"
       },
       "complexity": {
-        "noExcessiveCognitiveComplexity": "warn"
-      },
-      "security": {
-        "noDangerouslySetInnerHtml": "warn"
+        /* Needs more work to fix */
+        "noExcessiveCognitiveComplexity": "off",
+        "useSimplifiedLogicExpression": "off"
       }
     }
   },

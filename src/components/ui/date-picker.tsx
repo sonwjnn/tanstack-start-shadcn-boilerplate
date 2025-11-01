@@ -91,6 +91,7 @@ export const DatePicker = React.forwardRef<
 			onChange?.(date);
 		};
 
+		// biome-ignore lint/complexity/noExcessiveCognitiveComplexity: <>
 		const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
 			let newValue = e.target.value.replace(/\D/g, ""); // Only keep numbers
 

@@ -41,7 +41,8 @@
           }
         },
         "noShadow": "off",
-        "noEmptySource": "off"
+        "noEmptySource": "off",
+        "noReactForwardRef": "warn"
       },
       "correctness": {
         "noUnusedImports": "error",
@@ -51,8 +52,9 @@
       },
       "suspicious": {
         "noConsole": "warn",
-        "noDoubleEquals": "off",
         "noArrayIndexKey": "warn",
+
+        "noDoubleEquals": "off",
         "noDocumentCookie": "off"
       },
       "style": {
@@ -83,6 +85,12 @@
         "useAriaPropsForRole": "off",
         "noRedundantRoles": "off",
         "noSvgWithoutTitle": "off"
+      },
+      "complexity": {
+        "noExcessiveCognitiveComplexity": "warn"
+      },
+      "security": {
+        "noDangerouslySetInnerHtml": "warn"
       }
     }
   },

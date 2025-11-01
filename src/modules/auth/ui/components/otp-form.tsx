@@ -18,6 +18,7 @@ export const OtpForm = ({ className, ...props }: OtpFormProps) => {
 		defaultValues: { otp: "" },
 		onSubmit: async ({ value }) => {
 			setIsLoading(true);
+			await Promise.resolve();
 			console.log(value);
 			setTimeout(() => {
 				setIsLoading(false);

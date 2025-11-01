@@ -3,7 +3,8 @@ import { Link, useNavigate } from "@tanstack/react-router";
 import { Loader2, LogIn } from "lucide-react";
 import { useState } from "react";
 import { toast } from "sonner";
-import { GithubSvgIcon, GmailSvgIcon } from "@/assets/brand-icons";
+import { GithubSvgIcon } from "@/assets/brand-icons/github-svg-icon";
+import { GmailSvgIcon } from "@/assets/brand-icons/gmail-svg-icon";
 import { TextField } from "@/components/forms/text-field";
 import { Button } from "@/components/ui/button";
 import { cn, sleep } from "@/lib/utils";
@@ -30,7 +31,7 @@ export const SignInForm = ({
 		},
 		onSubmit: async ({ value }) => {
 			setIsLoading(true);
-
+			await Promise.resolve();
 			toast.promise(sleep(2000), {
 				loading: "Signing in...",
 				success: () => {

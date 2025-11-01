@@ -21,7 +21,9 @@ export function convertToDate(value?: Date | string | null): Date | undefined {
 				if (isValid(parsed)) {
 					return parsed;
 				}
-			} catch {}
+			} catch {
+				// Do nothing
+			}
 		}
 
 		// Try native Date parsing as fallback

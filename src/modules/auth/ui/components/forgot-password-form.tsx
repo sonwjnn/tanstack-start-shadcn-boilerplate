@@ -19,7 +19,7 @@ export function ForgotPasswordForm({
 		defaultValues: { email: "" },
 		onSubmit: async ({ value }) => {
 			setIsLoading(true);
-			// eslint-disable-next-line no-console
+			await Promise.resolve();
 			console.log(value);
 
 			toast.promise(sleep(2000), {

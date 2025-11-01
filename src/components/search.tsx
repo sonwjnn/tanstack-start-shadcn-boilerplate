@@ -6,10 +6,7 @@ type SearchProps = {
 	placeholder?: string;
 };
 
-export function Search({
-	className = "",
-	placeholder = "Search",
-}: SearchProps) {
+export function Search({ placeholder = "Search" }: SearchProps) {
 	return (
 		<Input
 			className="w-full lg:w-52 xl:w-64"

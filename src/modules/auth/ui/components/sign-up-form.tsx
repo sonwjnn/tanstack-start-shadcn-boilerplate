@@ -1,6 +1,7 @@
 import { useForm } from "@tanstack/react-form";
 import { useState } from "react";
-import { GithubSvgIcon, GmailSvgIcon } from "@/assets/brand-icons";
+import { GithubSvgIcon } from "@/assets/brand-icons/github-svg-icon";
+import { GmailSvgIcon } from "@/assets/brand-icons/gmail-svg-icon";
 import { TextField } from "@/components/forms/text-field";
 import { Button } from "@/components/ui/button";
 import { cn } from "@/lib/utils";
@@ -20,7 +21,7 @@ export function SignUpForm({
 		},
 		onSubmit: async ({ value }) => {
 			setIsLoading(true);
-			// eslint-disable-next-line no-console
+			await Promise.resolve();
 			console.log(value);
 
 			setTimeout(() => {

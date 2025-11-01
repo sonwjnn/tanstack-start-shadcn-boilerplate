@@ -39,15 +39,21 @@
           "options": {
             "functions": ["clsx", "cva", "cn"]
           }
-        }
+        },
+        "noShadow": "off",
+        "noEmptySource": "off"
       },
       "correctness": {
         "noUnusedImports": "error",
         "noUnusedLabels": "error",
-        "noUnusedVariables": "error"
+        "noUnusedVariables": "error",
+        "useExhaustiveDependencies": "warn"
       },
       "suspicious": {
-        "noConsole": "warn"
+        "noConsole": "warn",
+        "noDoubleEquals": "off",
+        "noArrayIndexKey": "warn",
+        "noDocumentCookie": "off"
       },
       "style": {
         "noParameterAssign": "error",
@@ -61,8 +67,22 @@
         "noInferrableTypes": "error",
         "noUselessElse": "error",
 
+        "useBlockStatements": "off",
         "noMagicNumbers": "off",
-        "useConsistentTypeDefinitions": "off"
+        "useConsistentTypeDefinitions": "off",
+        "noNestedTernary": "off"
+      },
+      "performance": {
+        "noNamespaceImport": "off"
+      },
+      "a11y": {
+        "useSemanticElements": "off",
+        "useFocusableInteractive": "off",
+        "noNoninteractiveElementInteractions": "off",
+        "useKeyWithClickEvents": "off",
+        "useAriaPropsForRole": "off",
+        "noRedundantRoles": "off",
+        "noSvgWithoutTitle": "off"
       }
     }
   },

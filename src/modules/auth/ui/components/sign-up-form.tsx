@@ -19,9 +19,8 @@ export function SignUpForm({
 			password: "",
 			name: "",
 		},
-		onSubmit: async ({ value }) => {
+		onSubmit: ({ value }) => {
 			setIsLoading(true);
-			await Promise.resolve();
 			console.log(value);
 
 			setTimeout(() => {

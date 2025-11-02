@@ -17,10 +17,8 @@ export function ForgotPasswordForm({
 
 	const form = useForm({
 		defaultValues: { email: "" },
-		onSubmit: async ({ value }) => {
+		onSubmit: ({ value }) => {
 			setIsLoading(true);
-			await Promise.resolve();
-			console.log(value);
 
 			toast.promise(sleep(2000), {
 				loading: "Sending email...",

@@ -29,9 +29,9 @@ export const SignInForm = ({
 			email: "",
 			password: "",
 		},
-		onSubmit: async ({ value }) => {
+		onSubmit: ({ value }) => {
 			setIsLoading(true);
-			await Promise.resolve();
+
 			toast.promise(sleep(2000), {
 				loading: "Signing in...",
 				success: () => {
@@ -49,7 +49,7 @@ export const SignInForm = ({
 					auth.setUser(mockUser);
 					auth.setAccessToken("mock-access-token");
 
-					// Redirect to the stored location or default to dashboard
+					// Navigate - router context will update via __root.tsx useEffect
 					const targetPath = redirectTo || "/";
 					navigate({ to: targetPath, replace: true });
 

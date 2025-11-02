@@ -1,20 +1,19 @@
 import { QueryCache, QueryClient } from "@tanstack/react-query";
 import { createRouter } from "@tanstack/react-router";
 import { setupRouterSsrQueryIntegration } from "@tanstack/react-router-ssr-query";
-import { AxiosError } from "axios";
+import { HTTPError } from "ky";
 import { toast } from "sonner";
 import { handleServerError } from "@/lib/handle-server-error";
-import { useAuthStore } from "./modules/auth/store/auth-store";
-import { DefaultCatchBoundaryView } from "./modules/errors/ui/views/default-catch-boudary-view";
-import { NotFoundErrorView } from "./modules/errors/ui/views/not-found-error-view";
-import { routeTree } from "./routeTree.gen";
+import { useAuthStore } from "@/modules/auth/store/auth-store";
+import { DefaultCatchBoundaryView } from "@/modules/errors/ui/views/default-catch-boudary-view";
+import { NotFoundErrorView } from "@/modules/errors/ui/views/not-found-error-view";
+import { routeTree } from "@/routeTree.gen";
 
 export function getRouter() {
 	const queryClient = new QueryClient({
 		defaultOptions: {
 			queries: {
 				retry: (failureCount, error) => {
-					// eslint-disable-next-line no-console
 					if (import.meta.env.DEV) {
 						console.log({ failureCount, error });
 					}
@@ -27,7 +26,7 @@ export function getRouter() {
 					}
 
 					return !(
-						error instanceof AxiosError &&
+						error instanceof HTTPError &&
 						[401, 403].includes(error.response?.status ?? 0)
 					);
 				},
@@ -38,7 +37,7 @@ export function getRouter() {
 				onError: (error) => {
 					handleServerError(error);
 
-					if (error instanceof AxiosError && error.response?.status === 304) {
+					if (error instanceof HTTPError && error.response?.status === 304) {
 						toast.error("Content not modified!");
 					}
 				},
@@ -46,7 +45,7 @@ export function getRouter() {
 		},
 		queryCache: new QueryCache({
 			onError: (error) => {
-				if (error instanceof AxiosError) {
+				if (error instanceof HTTPError) {
 					if (error.response?.status === 401) {
 						toast.error("Session expired!");
 						useAuthStore.getState().auth.reset();
@@ -69,7 +68,8 @@ export function getRouter() {
 	// Create a new router instance
 	const router = createRouter({
 		routeTree,
-		context: { queryClient },
+		// biome-ignore lint/style/noNonNullAssertion: <>
+		context: { queryClient, auth: undefined! },
 		defaultPreload: "intent",
 		defaultPreloadStaleTime: 0,
 		defaultErrorComponent: DefaultCatchBoundaryView,

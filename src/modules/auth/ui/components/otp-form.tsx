@@ -16,11 +16,10 @@ export const OtpForm = ({ className, ...props }: OtpFormProps) => {
 
 	const form = useForm({
 		defaultValues: { otp: "" },
-		onSubmit: async ({ value }) => {
+		onSubmit: ({ value }) => {
 			setIsLoading(true);
-			await Promise.resolve();
-			console.log(value);
 			setTimeout(() => {
+				console.log(value);
 				setIsLoading(false);
 				navigate({ to: "/" });
 			}, 1000);

@@ -82,5 +82,17 @@
       "enabled": true
     }
   },
+  "overrides": [
+    {
+      "includes": ["src/App.tsx"],
+      "linter": {
+        "rules": {
+          "style": {
+            "useFilenamingConvention": "off"
+          }
+        }
+      }
+    }
+  ],
   "extends": ["ultracite/core", "ultracite/react"]
 }

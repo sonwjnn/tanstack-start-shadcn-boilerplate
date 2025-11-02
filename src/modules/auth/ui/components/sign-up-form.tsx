@@ -1,8 +1,8 @@
 import { useForm } from "@tanstack/react-form";
 import { useState } from "react";
-import { GithubSvgIcon } from "@/assets/brand-icons/github-svg-icon";
-import { GmailSvgIcon } from "@/assets/brand-icons/gmail-svg-icon";
 import { TextField } from "@/components/forms/text-field";
+import { GithubSvgIcon } from "@/components/svg-icons/github-svg-icon";
+import { GmailSvgIcon } from "@/components/svg-icons/gmail-svg-icon";
 import { Button } from "@/components/ui/button";
 import { cn } from "@/lib/utils";
 import { registerSchema } from "@/modules/auth/schemas";
